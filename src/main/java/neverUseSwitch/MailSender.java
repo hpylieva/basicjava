@@ -7,17 +7,17 @@ public class MailSender{
 
     public enum CodeType {
 
-        ABOUT(1) {
+        WELCOME(1) {
             public void sendMail(MailInfo mailInfo) {
                 System.out.println("welcome mail was generated and sent to " + mailInfo.getClient());
             }
         },
-        CODING(2) {
+        DONTCALL(2) {
             public void sendMail(MailInfo mailInfo) {
                 System.out.println("don't call us we call you. was generated and sent to " + mailInfo.getClient());
             }
         },
-        DATABASES(3) {
+        THANKYOU(3) {
             public void sendMail(MailInfo mailInfo) {
                 System.out.println("thank you mail is sent to " + mailInfo.getClient());
             }
