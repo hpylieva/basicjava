@@ -1,20 +1,62 @@
 package guessGame;
 
 import javax.swing.*;
+import java.util.Random;
 
 public class guessGame {
-    private final int MAX = 50;
 
-    public static void main(String[] args) {
+    private double bestScore;
+
+    public guessGame(){
+        bestScore = 0;
+    }
+
+    public void play(int max){
+
+        Random rand = new Random();
+        int wantedNumber = rand.nextInt(max);
+        System.out.println(wantedNumber);
+        Integer integerUserNumber = -1;
+       // JFrame frame = new JFrame("Message");
+        int numberOfAttempts = 0;
+
+        do {
+            //entering the number
+            do
+            integerUserNumber= Communication.askForInteger("Tell me a number from 0 to " + Integer.toString(max));
+            while (integerUserNumber>50||integerUserNumber<0);
+
+            JFrame frame = new JFrame("MessageDialog");
+
+
+                //if(integerUserNumber>=0 && integerUserNumber<=max){
+                if (integerUserNumber < wantedNumber) {
+                    //JFrame frame = new JFrame("MessageDialog");
+                    JOptionPane.showMessageDialog(null, "Your number is LOWER",
+                            "Info", JOptionPane.INFORMATION_MESSAGE);
+                    numberOfAttempts++;
+                } else if (integerUserNumber > wantedNumber) {
+                    JOptionPane.showMessageDialog(null, "Your number is HIGHER",
+                            "Info", JOptionPane.INFORMATION_MESSAGE);
+                    numberOfAttempts++;
+                } else {
+                    JOptionPane.showMessageDialog(null,"Your number is JUST NICE! Congratulations!",
+                            "Info", JOptionPane.INFORMATION_MESSAGE);
+                    numberOfAttempts++;
+                }
+        } while (integerUserNumber!=wantedNumber);
+
+        float score = (float)max / numberOfAttempts;
+        if(bestScore < score){
+            bestScore = score;
+        }
 
     }
 
-    private static void play(int max){
-        String tell_me_a_number = JOptionPane.showInputDialog("tell me a number");
+    public void printBestScore(){
 
-    }
+    JOptionPane.showMessageDialog(null, String.format("Your best score is %.2f", bestScore),
+                "Info", JOptionPane.INFORMATION_MESSAGE);
 
-    private static void printBestScore(){
-        System.out.println();
     }
 }
