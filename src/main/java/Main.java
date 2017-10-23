@@ -1,6 +1,10 @@
 import guessGame.Communication;
 import guessGame.guessGame;
+import heroesGame.CharacterFactory;
+import heroesGame.Characters.Character;
+import heroesGame.GameManager;
 import neverUseSwitch.MailSender;
+
 import org.fluttercode.datafactory.impl.DataFactory;
 
 import javax.swing.*;
@@ -25,6 +29,7 @@ public class Main {
                     doWork(mailSender, dataFactory);
                     Thread.sleep(1000);
                 }
+
             } else if (dialogResult==1) {
                 guessGame game = new guessGame();
                 int dialogResultLocal;
@@ -47,8 +52,13 @@ public class Main {
                         "Info", JOptionPane.INFORMATION_MESSAGE);
                 game.printBestScore();
             }
-
-
+            else if (dialogResult==2){
+                GameManager gameManager =  new GameManager();
+                CharacterFactory factory = new CharacterFactory();
+                Character c1 = factory.CreateCharacter();
+                Character c2 = factory.CreateCharacter();
+                gameManager.fight(c1,c2);
+            }
 
         }while (dialogResult != 3);
     }

@@ -40,8 +40,8 @@ public class MailSender{
             }
         }
 
-        public static CodeType valueOf(int pageType) {
-            return (CodeType) map.get(pageType);
+        public static CodeType valueOf(int codeType) {
+            return (CodeType) map.get(codeType);
         }
 
         public int getValue() {

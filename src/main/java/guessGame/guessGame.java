@@ -16,7 +16,6 @@ public class guessGame {
         Random rand = new Random();
         int wantedNumber = rand.nextInt(max);
         Integer integerUserNumber = -1;
-       // JFrame frame = new JFrame("Message");
         int numberOfAttempts = 0;
 
         do {
