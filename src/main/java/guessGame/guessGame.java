@@ -15,7 +15,6 @@ public class guessGame {
 
         Random rand = new Random();
         int wantedNumber = rand.nextInt(max);
-        System.out.println(wantedNumber);
         Integer integerUserNumber = -1;
        // JFrame frame = new JFrame("Message");
         int numberOfAttempts = 0;
@@ -24,7 +23,7 @@ public class guessGame {
             //entering the number
             do
             integerUserNumber= Communication.askForInteger("Tell me a number from 0 to " + Integer.toString(max));
-            while (integerUserNumber>50||integerUserNumber<0);
+            while (integerUserNumber>max||integerUserNumber<0);
 
             JFrame frame = new JFrame("MessageDialog");
 

@@ -1,11 +1,13 @@
 package neverUseSwitch;
 
+import org.fluttercode.datafactory.impl.DataFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class MailSender{
 
-    public enum CodeType {
+    private enum CodeType {
 
         WELCOME(1) {
             public void sendMail(MailInfo mailInfo) {
@@ -45,20 +47,16 @@ public class MailSender{
         public int getValue() {
             return value;
         }
+
+
     }
 
-//    public void sendMail(MailInfo mailInfo) {
-//        System.out.println("Hi");
-//        switch (mailInfo.getMailCode()) {
-//            case 1:
-//                //40 lines of code
-//                System.out.println("welcome mail was generated and sent to " + mailInfo.getClient());
-//                break;
-//            case 2:
-//                //45 lines of code
-//                System.out.println("don't call us we call you. was generated and sent to " + mailInfo.getClient());
-//                break;
-//        }
-//    }
+    public static void doWork(MailSender mailSender, DataFactory dataFactory) {
+        Client client = new Client(dataFactory.getName(), dataFactory.getNumberBetween(16, 32));
+        MailInfo mailInfo = new MailInfo(client,dataFactory.getNumberBetween(1,4));
+        MailSender.CodeType codeType = MailSender.CodeType.valueOf(mailInfo.getMailCode());
+        codeType.sendMail(mailInfo);
+    }
+
 
 }
