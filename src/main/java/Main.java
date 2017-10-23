@@ -21,15 +21,21 @@ public class Main {
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.INFORMATION_MESSAGE,null, options, options[0]);
 
+            //neverUseSwitch
             if (dialogResult==0){
                 MailSender mailSender = new MailSender();
                 DataFactory dataFactory = new DataFactory();
+                int iterNumber;
+                do
+                    iterNumber= Communication.askForInteger("How many letters will we send?");
+                while (iterNumber<=0);
 
-                while (true) {
+                for(int i=0; i<iterNumber; i++) {
                     doWork(mailSender, dataFactory);
                     Thread.sleep(1000);
                 }
 
+            //guessGame
             } else if (dialogResult==1) {
                 guessGame game = new guessGame();
                 int dialogResultLocal;
@@ -52,6 +58,8 @@ public class Main {
                         "Info", JOptionPane.INFORMATION_MESSAGE);
                 game.printBestScore();
             }
+
+            //HeroesGame
             else if (dialogResult==2){
                 GameManager gameManager =  new GameManager();
                 CharacterFactory factory = new CharacterFactory();

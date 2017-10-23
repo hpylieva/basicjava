@@ -10,6 +10,7 @@ import heroesGame.Characters.Character;
 import heroesGame.Characters.Hobbit;
 import heroesGame.Characters.King;
 import heroesGame.Characters.Knight;
+import neverUseSwitch.MailSender;
 import org.fluttercode.datafactory.impl.DataFactory;
 
 import java.util.HashMap;
@@ -25,11 +26,15 @@ public class CharacterFactory {
         KNIGHT(4){ public Character create(){return new Knight();}};
 
         public abstract Character create();
-        private int value;
-        CharacterType(int i) {
-            this.value=i;
-        }
+        private  int value;
+
+        CharacterType(int i) { value=i; }
         private static Map map = new HashMap<>();
+        static {
+            for (CharacterType type : CharacterType.values()) {
+                map.put(type.value, type);
+            }
+        }
         public static CharacterType valueOf(int type) {
             return (CharacterType) map.get(type);
         }
@@ -41,7 +46,7 @@ public class CharacterFactory {
 
     public Character CreateCharacter() {
         DataFactory dataFactory = new DataFactory();
-        CharacterType newCharacter =  CharacterType.valueOf(dataFactory.getNumberBetween(1,4));
+        CharacterType newCharacter =  CharacterType.valueOf(dataFactory.getNumberBetween(0,4));
         return newCharacter.create();
     }
 }

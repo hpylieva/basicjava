@@ -11,5 +11,8 @@ public class Knight extends King{
         this.setHp(dataFactory.getNumberBetween(2, 12));
     }
 
-
+    @Override
+    public void kick(Character c) {
+        c.hp -= dataFactory.getNumberUpTo(this.power);
+    }
 }
