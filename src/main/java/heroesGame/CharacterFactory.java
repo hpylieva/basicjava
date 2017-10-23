@@ -19,6 +19,9 @@ import java.util.Map;
 
 
 public class CharacterFactory {
+
+    private static final DataFactory dataFactory = new DataFactory();
+
     private enum CharacterType{
         HOBBIT(1){ public Character create(){return new Hobbit();}},
         ELF(2){ public Character create(){return new Elf();}},
@@ -45,8 +48,8 @@ public class CharacterFactory {
     }
 
     public Character CreateCharacter() {
-        DataFactory dataFactory = new DataFactory();
-        CharacterType newCharacter =  CharacterType.valueOf(dataFactory.getNumberBetween(0,4));
+
+        CharacterType newCharacter =  CharacterType.valueOf(dataFactory.getNumberBetween(1,4));
         return newCharacter.create();
     }
 }

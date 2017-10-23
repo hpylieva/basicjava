@@ -2,6 +2,7 @@ import guessGame.Communication;
 import guessGame.guessGame;
 import heroesGame.CharacterFactory;
 import heroesGame.Characters.Character;
+import heroesGame.Characters.Hobbit;
 import heroesGame.GameManager;
 import neverUseSwitch.MailSender;
 
@@ -63,8 +64,19 @@ public class Main {
             else if (dialogResult==2){
                 GameManager gameManager =  new GameManager();
                 CharacterFactory factory = new CharacterFactory();
-                Character c1 = factory.CreateCharacter();
-                Character c2 = factory.CreateCharacter();
+                int dialogResultLocal=-99;
+                Character c1;
+                Character c2;
+                do {
+                    DataFactory dataFactory = new DataFactory();
+                    c1 = factory.CreateCharacter();
+                    c2 = factory.CreateCharacter();
+                    if (c1 == c2 && c1 instanceof Hobbit) {
+                        dialogResultLocal=JOptionPane.showConfirmDialog(null,
+                                "Both fighters are Hobbits and the fight won't end...");
+                    }
+
+                }while (dialogResultLocal == JOptionPane.YES_OPTION );
                 gameManager.fight(c1,c2);
             }
 

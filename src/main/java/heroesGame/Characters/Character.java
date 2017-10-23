@@ -6,7 +6,6 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public abstract class Character {
 
     int power;
@@ -17,5 +16,11 @@ public abstract class Character {
     public boolean isAlive() {
         return this.hp > 0;
     }
+
+    @Override
+    public String toString() {
+        return "{Power: "+getPower()+"; HP: "+getHp()+"}";
+    }
+
 
 }
